@@ -18,17 +18,14 @@ SHELL ["/bin/bash", "-c"]
 
 RUN adduser -s /bin/bash -h "${APP_DIR}" -D "${APP_USER}"
 
-COPY --chown=rails ./docker-entrypoint.sh "${APP_DIR}"
-COPY --chown=rails ./files/gemrc "${APP_DIR}"/.gemrc
+COPY --chown=rails ./docker-entrypoint.sh /
 
 USER "${APP_USER}"
 WORKDIR "${APP_DIR}"
 
 RUN gem install rails -v "${RAILS_VERSION}"
 
-RUN rails new . \
-  --database postgresql \
-  --skip-system-test \
-  --skip-test
+RUN mkdir -p tmp log && \
+    chown "${APP_USER}":"${APP_USER}" tmp log
 
-ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "/docker-entrypoint.sh"]

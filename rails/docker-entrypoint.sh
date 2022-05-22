@@ -3,7 +3,8 @@
 rails new . \
   --database postgresql \
   --skip-system-test \
-  --skip-test
+  --skip-test \
+  --skip-git
 
 bundler install
 

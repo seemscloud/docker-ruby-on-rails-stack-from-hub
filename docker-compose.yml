@@ -14,10 +14,6 @@ services:
       ENVIRONMENT: development
     ports:
       - "3000:3000"
-    volumes:
-      - ${PWD}/rails/app:/app
-      - rails-tmp:/app/tmp:rw
-      - rails-log:/app/log:rw
   postgresql:
     container_name: postgresql
     hostname: postgresql
@@ -28,7 +24,3 @@ services:
       POSTGRES_USER: "postgres"
     volumes:
       - ${PWD}/postgresql/init-4-rails.sh:/docker-entrypoint-initdb.d/init-4-rails.sh
-
-volumes:
-  rails-tmp:
-  rails-log:

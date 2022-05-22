@@ -10,6 +10,19 @@ services:
         RAILS_VERSION: "7.0.3"
     environment:
       LISTEN_PORT: 3000
+      LISTNE_ADDRESS: 0.0.0.0
       ENVIRONMENT: development
     ports:
       - "3000:3000"
+    volumes:
+      - ${PWD}/rails/files/database.yml:/app/config/database.yml
+  postgresql:
+    container_name: postgresql
+    hostname: postgresql
+    build:
+      context: ./postgresql
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+    volumes:
+      - ${PWD}/postgresql/init-4-rails.sh:/docker-entrypoint-initdb.d/init-4-rails.sh

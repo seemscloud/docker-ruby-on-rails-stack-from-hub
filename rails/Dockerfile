@@ -26,4 +26,9 @@ WORKDIR "${APP_DIR}"
 
 RUN gem install rails -v "${RAILS_VERSION}"
 
+RUN rails new . \
+  --database postgresql \
+  --skip-system-test \
+  --skip-test
+
 ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh"]

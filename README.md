@@ -1,1 +1,0 @@
-# docker-ruby-on-rails-stack-from-hub

@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  rails:
+    container_name: rails
+    hostname: rails
+    build:
+      context: ./rails
+      args:
+        RAILS_VERSION: "7.0.3"
+    environment:
+      LISTEN_PORT: 3000
+      ENVIRONMENT: development
+    ports:
+      - "3000:3000"
